@@ -21,8 +21,8 @@ from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardSc
 from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.linear_model import Ridge
 
-from xgboost import XGBRegressor
-from lightgbm import LGBMRegressor
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
 
 
 # =============================================================================
