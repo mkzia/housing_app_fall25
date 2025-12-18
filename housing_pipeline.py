@@ -18,11 +18,11 @@ from sklearn.impute import SimpleImputer
 from sklearn.metrics.pairwise import rbf_kernel
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler
-from sklearn.ensemble import HistGradientBoostingRegressor
-from sklearn.linear_model import Ridge
+from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.linear_model import RidgeClassifier
 
-from xgboost import XGBRegressor
-from lightgbm import LGBMRegressor
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
 
 
 # =============================================================================
@@ -130,12 +130,12 @@ def make_estimator_for_name(name: str):
     Used in PCA variants and (optionally) elsewhere.
     """
     if name == "ridge":
-        return Ridge()
+        return RidgeClassifier()
     elif name == "histgradientboosting":
-        return HistGradientBoostingRegressor(random_state=42)
+        return HistGradientBoostingClassifier(random_state=42)
     elif name == "xgboost":
-        return XGBRegressor(
-            objective="reg:squarederror",
+        return XGBClassifier(
+            objective="binary:logistic",
             random_state=42,
             n_estimators=300,
             learning_rate=0.1,
@@ -146,7 +146,7 @@ def make_estimator_for_name(name: str):
             n_jobs=-1,
         )
     elif name == "lightgbm":
-        return LGBMRegressor(
+        return LGBMClassifier(
             random_state=42,
             n_estimators=300,
             learning_rate=0.05,
